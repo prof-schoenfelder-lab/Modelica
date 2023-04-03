@@ -1,0 +1,25 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: src/uebersicht
+parts: 
+  - caption: Modelica
+    numbered: True
+    chapters:
+    - file: src/einfuehrung
+      sections:
+      - file: src/beispielAbkuehlung
+      - file: src/grundlegenderModellaufbau
+      - file: src/bedingungen
+      - file: src/literatur
+    - file: src/objektorientierteP
+      sections:
+      - file: src/klassenInModelica
+      - file: src/modelicaStandardLibrary
+  - caption: GreenCity
+    numbered: true
+    chapters:
+    - file: src/comingSoon
+    
+
