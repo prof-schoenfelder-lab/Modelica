@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.2. Modelica Standard Library &#8212; System Simulation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/modelicaStandardLibrary';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Coming Soon" href="comingSoon.html" />
+    <link rel="prev" title="2.1. Klassen in Modelica" href="klassenInModelica.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="uebersicht.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo.png" class="logo__image only-light" alt="System Simulation - Home"/>
+    <script>document.write(`<img src="../_static/Logo.png" class="logo__image only-dark" alt="System Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="uebersicht.html">
+                    Übersicht
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="einfuehrung.html">1. Einführung</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="beispielAbkuehlung.html">1.1. Beispiel: Abkühlung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grundlegenderModellaufbau.html">1.2. Grundlegender Modellaufbau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bedingungen.html">1.3. Bedingungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="literatur.html">1.4. Literatur</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="objektorientierteP.html">2. Objektorientierte Programmierung</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="klassenInModelica.html">2.1. Klassen in Modelica</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Modelica Standard Library</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">GreenCity</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="comingSoon.html">3. Coming Soon</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/prof-schoenfelder-lab/Modelica" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/modelicaStandardLibrary.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelica Standard Library</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruckblick-abkuhlung-eines-raumes">2.2.1. Rückblick: Abkühlung eines Raumes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgaben-zu-warmetransport-innerhalb-der-msl">2.2.2. Aufgaben zu Wärmetransport innerhalb der MSL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signalquellen-innerhalb-der-msl">2.2.3. Signalquellen innerhalb der MSL</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelica-standard-library">
+<h1><span class="section-number">2.2. </span>Modelica Standard Library<a class="headerlink" href="#modelica-standard-library" title="Permalink to this heading">#</a></h1>
+<p>Die Modelica Standard Library (MSL) strukturiert sich wie folgt:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Electrical.Analog</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Electrical.png" src="../_images/Lib-Electrical.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Electrical.Digital</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Digital.png" src="../_images/Lib-Digital.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Electrical.
+Machines</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Machines.png" src="../_images/Lib-Machines.png" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Magnetic.
+FluxTubes</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-FluxTubes.png" src="../_images/Lib-FluxTubes.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Mechanics.
+Translational</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Translational.png" src="../_images/Lib-Translational.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Mechanics.
+Rotational</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Rotational.png" src="../_images/Lib-Rotational.png" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Mechanics.
+MultiBody</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-MultiBody1.png" src="../_images/Lib-MultiBody1.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Fluid</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Fluid.png" src="../_images/Lib-Fluid.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Media</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Media.png" src="../_images/Lib-Media.png" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Thermal.
+FluidHeatFlow</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Thermal.png" src="../_images/Lib-Thermal.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Thermal.
+HeatTransfer</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-HeatTransfer.png" src="../_images/Lib-HeatTransfer.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Blocks</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Blocks1.png" src="../_images/Lib-Blocks1.png" />
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.StateGraph</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-StateGraph.png" src="../_images/Lib-StateGraph.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Math</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<img alt="../_images/Lib-Math.png" src="../_images/Lib-Math.png" />
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Modelica.Utilities</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Lib-Utilities.png"><img alt="../_images/Lib-Utilities.png" src="../_images/Lib-Utilities.png" style="width: 100px;" /></a>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Wie können wir mit den Klassen, die bereits in der Bibliothek deklariert wurden, arbeiten bzw. Systeme modellieren?</p>
+<section id="ruckblick-abkuhlung-eines-raumes">
+<h2><span class="section-number">2.2.1. </span>Rückblick: Abkühlung eines Raumes<a class="headerlink" href="#ruckblick-abkuhlung-eines-raumes" title="Permalink to this heading">#</a></h2>
+<p>Die <a class="reference internal" href="grundlegenderModellaufbau.html#einfuehrung-grundlagen-abkuehlung"><span class="std std-ref">Aufgabe: Abkühlung eines Raumes</span></a> aus der Einführung wird anschließend mit dem objektorientierten Ansatz gelöst.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Erinnerung: Aufgabe</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/AbkuehlungRaum.png"><img alt="../_images/AbkuehlungRaum.png" src="../_images/AbkuehlungRaum.png" style="width: 550px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Erinnerung: Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Raum</span> <span class="s2">&quot;Abkuehlung eines unbeheizten Raums&quot;</span>
+	<span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">86400</span><span class="p">);</span>
+	
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">A</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m2&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mi">13</span>     <span class="s2">&quot;Wandfläche&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">c_p</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;J/(kg.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mi">1000</span>   <span class="s2">&quot;spezifische Waermekapazität (isobar)&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">k</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;W/(m.K)&quot;</span><span class="p">)</span> <span class="o">=</span><span class="mf">0.28</span>   <span class="s2">&quot;Waermeleitfaehigkeit&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">rho</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/m3&quot;</span><span class="p">)</span>   <span class="o">=</span><span class="mf">1.2</span>    <span class="s2">&quot;Dichte&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">L</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">0.4</span>    <span class="s2">&quot;Wanddicke&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_R0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">294.15</span> <span class="s2">&quot;Anfangstemperatur des Innenraums&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_A</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">273.15</span> <span class="s2">&quot;Aussentemperatur&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">V</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m3&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mi">65</span>     <span class="s2">&quot;Volumen&quot;</span><span class="p">;</span>
+	
+	<span class="nb">Real</span> <span class="n">T_R</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Innenraumtemperatur&quot;</span><span class="p">;</span>
+	
+	<span class="kr">initial</span> <span class="kr">equation</span>
+		<span class="n">T_R</span><span class="o">=</span><span class="n">T_R0</span><span class="p">;</span>
+		
+	<span class="kr">equation</span>
+		<span class="n">c_p</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="kr">der</span><span class="p">(</span><span class="n">T_R</span><span class="p">)</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="n">A</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">T_A</span><span class="o">-</span><span class="n">T_R</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nc">Raum</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Lösung: OOP</label><div class="sd-tab-content docutils">
+<div class="highlight-Modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">RaumOOP</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">86400</span><span class="p">);</span>
+    <span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">HeatCapacitor</span>    <span class="n">thermischeMasse</span><span class="p">(</span>
+		<span class="n">C</span><span class="o">=</span><span class="mi">78000</span><span class="p">,</span>
+		<span class="n">T</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">294.15</span><span class="p">));</span>
+    <span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">ThermalConductor</span> <span class="n">konduktion</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">9.1</span><span class="p">);</span>
+    <span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Sources</span><span class="o">.</span><span class="n">FixedTemperature</span>    <span class="n">festeTemperatur</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">273.15</span><span class="p">);</span>
+    <span class="kr">equation</span>
+        <span class="kr">connect</span><span class="p">(</span><span class="n">thermischeMasse</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">konduktion</span><span class="o">.</span><span class="n">port_a</span><span class="p">);</span>
+        <span class="kr">connect</span><span class="p">(</span><span class="n">konduktion</span><span class="o">.</span><span class="n">port_b</span><span class="p">,</span> <span class="n">festeTemperatur</span><span class="o">.</span><span class="n">port</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nc">RaumOOP</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Neben der rein textbasierten Modellierung, bietet SimulationX eine <strong>graphische Benutzeroberfläche</strong>, die genutzt werden kann, um Objekte zu instanziieren,
+Verbindungen zu erstellen und Parameter zu ändern. Die Abkühlung des Raumes wird im Folgenden graphisch modelliert. Vergleicht man den entstehenden Quellcode der graphischen Modellierung mit der vorherigen objektorientierten Lösung, fallen die zusätzlichen <code class="docutils literal notranslate"><span class="pre">annotations</span></code> auf. Diese beschreiben die Position der graphischen Darstellung der Objekte.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Lösung: Graphisch</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/AbkuehlungRaumGraphisch.png"><img alt="../_images/AbkuehlungRaumGraphisch.png" src="../_images/AbkuehlungRaumGraphisch.png" style="width: 550px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Quellcode: Graphisch</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">RaumGraphisch</span>
+	<span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">86400</span><span class="p">);</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">HeatCapacitor</span> <span class="n">thermischeMasse</span><span class="p">(</span>
+		<span class="n">C</span><span class="o">=</span><span class="mi">78000</span><span class="p">,</span>
+		<span class="n">T</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">294.15</span><span class="p">))</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">120</span><span class="p">,</span><span class="mi">65</span><span class="p">},{</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">85</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">ThermalConductor</span> <span class="n">konduktion</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">9.1</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span><span class="mi">45</span><span class="p">},{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">65</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Sources</span><span class="o">.</span><span class="n">FixedTemperature</span> <span class="n">festeTemperatur</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">273.15</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">45</span><span class="p">},{</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">65</span><span class="p">}})));</span>
+	<span class="kr">equation</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">konduktion</span><span class="o">.</span><span class="n">port_a</span><span class="p">,</span><span class="n">thermischeMasse</span><span class="o">.</span><span class="n">port</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">110</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">110</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">110</span><span class="p">,</span><span class="mi">65</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">festeTemperatur</span><span class="o">.</span><span class="n">port</span><span class="p">,</span><span class="n">konduktion</span><span class="o">.</span><span class="n">port_b</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">35</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span><span class="mi">55</span><span class="p">},{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">55</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+<span class="kr">end</span> <span class="nc">RaumGraphisch</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-hinweis admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Um die Anfangstemperatur der thermischen Masse zu definieren, muss in die Textansicht gewechselt werden. Hier kann die Anfangstemperatur durch <code class="docutils literal notranslate"><span class="pre">T(start=294.15)</span></code> ergänzt werden. Die graphische Benutzeroberfläche von SimulationX ermöglicht lediglich die Änderung von Parametern, von Objekten, die direkt initialisiert werden.</p>
+</div>
+</section>
+<section id="aufgaben-zu-warmetransport-innerhalb-der-msl">
+<h2><span class="section-number">2.2.2. </span>Aufgaben zu Wärmetransport innerhalb der MSL<a class="headerlink" href="#aufgaben-zu-warmetransport-innerhalb-der-msl" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Finden Sie die Zusammenhänge zwischen unserer bisherigen Modellierung des Raums und den neuen Parametern <code class="docutils literal notranslate"><span class="pre">thermischeMasse.C</span></code> und <code class="docutils literal notranslate"><span class="pre">konduktion.G</span></code>. Nutzen Sie dafür die Klassendefinitionen der Modelica Standard Library.</p></li>
+<li><p>Welche formale Bedeutung hat das Verbinden von den Anschlüssen der Objekte? Schauen Sie dafür in die Deklaration des Connectors.</p></li>
+<li><p>Erweitern Sie das bisherige graphische Modell um die thermische Masse der Wand. Ändern Sie dafür den bisherigen Wandaufbau zu einer Kombination aus Mauerwerk und Dämmung. Wie interpretieren Sie die resultierenden Wärmeströme und Temperaturen?</p></li>
+</ol>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Wandaufbau.png"><img alt="../_images/Wandaufbau.png" src="../_images/Wandaufbau.png" style="width: 300px;" /></a>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Einheit</p></th>
+<th class="head"><p>Mauerwerk</p></th>
+<th class="head"><p>Dämmung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>J/(kg.K)</p></td>
+<td><p>836</p></td>
+<td><p>920</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<td><p>kg/m<sup>3</sup></p></td>
+<td><p>1400</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>W/(m.K)</p></td>
+<td><p>0,058</p></td>
+<td><p>0,035</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Vergrößern Sie ihr Wandmodell um die Transmissionsverluste eines 3 m<sup>2</sup> großen Fensters (<span class="math notranslate nohighlight">\(G =\,\)</span> 2,4 W/K) in der Wand. Wie verändern sich die Wärmeströme?</p></li>
+<li><p>Welche Leistung bräuchten Sie ungefähr, um die Anfangstemperatur zu halten?</p></li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Lösung:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Graphisch</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Wandmodell_MSL.png"><img alt="../_images/Wandmodell_MSL.png" src="../_images/Wandmodell_MSL.png" style="width: 7000px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Quellcode</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Transmission</span>
+	<span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">1209600</span><span class="p">);</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">HeatCapacitor</span> <span class="n">Raumluft</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">78000</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">135</span><span class="p">,</span><span class="mi">65</span><span class="p">},{</span><span class="o">-</span><span class="mi">115</span><span class="p">,</span><span class="mi">85</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">ThermalConductor</span> <span class="n">Mauerwerk</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">3.77</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span><span class="mi">50</span><span class="p">},{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">70</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">ThermalConductor</span> <span class="n">Daemmung</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">2.725</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">50</span><span class="p">},{</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span><span class="mi">70</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Sources</span><span class="o">.</span><span class="n">FixedTemperature</span> <span class="n">Aussentemperatur</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">273.15</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">},{</span><span class="mi">5</span><span class="p">,</span><span class="mi">70</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">HeatCapacitor</span> <span class="n">MauerwerkUndDaemmung</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">3521440</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span><span class="mi">20</span><span class="p">},{</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span><span class="mi">40</span><span class="p">}})));</span>
+	<span class="n">Modelica</span><span class="o">.</span><span class="n">Thermal</span><span class="o">.</span><span class="n">HeatTransfer</span><span class="o">.</span><span class="n">Components</span><span class="o">.</span><span class="n">ThermalConductor</span> <span class="n">Fenster</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="mf">2.4</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Placement</span><span class="p">(</span><span class="n">transformation</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">80</span><span class="p">},{</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">100</span><span class="p">}})));</span>
+	<span class="kr">initial</span> <span class="kr">equation</span>
+		<span class="n">Raumluft</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mf">294.15</span><span class="p">;</span>
+		<span class="n">MauerwerkUndDaemmung</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mf">294.15</span><span class="p">;</span>
+	<span class="kr">equation</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">Aussentemperatur</span><span class="o">.</span><span class="n">port</span><span class="p">,</span><span class="n">Daemmung</span><span class="o">.</span><span class="n">port_b</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="mi">5</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span><span class="mi">60</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">Daemmung</span><span class="o">.</span><span class="n">port_a</span><span class="p">,</span><span class="n">Mauerwerk</span><span class="o">.</span><span class="n">port_b</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">60</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">Raumluft</span><span class="o">.</span><span class="n">port</span><span class="p">,</span><span class="n">Mauerwerk</span><span class="o">.</span><span class="n">port_a</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span><span class="mi">65</span><span class="p">},{</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">85</span><span class="p">,</span><span class="mi">60</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">MauerwerkUndDaemmung</span><span class="o">.</span><span class="n">port</span><span class="p">,</span><span class="n">Mauerwerk</span><span class="o">.</span><span class="n">port_b</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span><span class="mi">20</span><span class="p">},{</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span><span class="mi">15</span><span class="p">},{</span><span class="o">-</span><span class="mi">55</span><span class="p">,</span><span class="mi">15</span><span class="p">},{</span><span class="o">-</span><span class="mi">55</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">60</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">Fenster</span><span class="o">.</span><span class="n">port_b</span><span class="p">,</span><span class="n">Aussentemperatur</span><span class="o">.</span><span class="n">port</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span><span class="mi">90</span><span class="p">},{</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span><span class="mi">90</span><span class="p">},{</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">90</span><span class="p">},{</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="mi">5</span><span class="p">,</span><span class="mi">60</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+		<span class="kr">connect</span><span class="p">(</span><span class="n">Fenster</span><span class="o">.</span><span class="n">port_a</span><span class="p">,</span><span class="n">Raumluft</span><span class="o">.</span><span class="n">port</span><span class="p">)</span> <span class="kr">annotation</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+			<span class="n">points</span><span class="o">=</span><span class="p">{{</span><span class="o">-</span><span class="mi">65</span><span class="p">,</span><span class="mi">90</span><span class="p">},{</span><span class="o">-</span><span class="mi">95</span><span class="p">,</span><span class="mi">90</span><span class="p">},{</span><span class="o">-</span><span class="mi">95</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span><span class="mi">60</span><span class="p">},{</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span><span class="mi">65</span><span class="p">}},</span>
+			<span class="n">color</span><span class="o">=</span><span class="p">{</span><span class="mi">191</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+			<span class="n">thickness</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">));</span>
+<span class="kr">end</span> <span class="nc">Transmission</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="signalquellen-innerhalb-der-msl">
+<h2><span class="section-number">2.2.3. </span>Signalquellen innerhalb der MSL<a class="headerlink" href="#signalquellen-innerhalb-der-msl" title="Permalink to this heading">#</a></h2>
+<p>Um veränderliche Randbedingungen definieren zu können - in unserem bisherigen Modell z.B. eine veränderliche Außentemperatur - gibt es die Klasse <a class="reference external" href="https://doc.modelica.org/Modelica%204.0.0/Resources/helpDymola/Modelica_Thermal_HeatTransfer_Sources.html#Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature">PrescribedTemperature</a>. Ein Objekt dieser Klasse kann einen, vor der Simulation bekannten, Temperaturverlauf abbilden. Neben der variablen Temperatur gibt es auch die Möglichkeit einen veränderlichen Wärmestrom mit der Klasse <a class="reference external" href="https://doc.modelica.org/Modelica%204.0.0/Resources/helpDymola/Modelica_Thermal_HeatTransfer_Sources.html#Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow">PrescribedHeatFlow</a> abzubilden.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Variable Temperatur</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/VariableTemperaturRandbedingung.png"><img alt="../_images/VariableTemperaturRandbedingung.png" src="../_images/VariableTemperaturRandbedingung.png" style="width: 200px;" /></a>
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text">Variabler Wärmestrom</p>
+</div>
+<div class="sd-card-body docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/VariablerWärmestromRB.png"><img alt="../_images/VariablerWärmestromRB.png" src="../_images/VariablerWärmestromRB.png" style="width: 250px;" /></a>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>In der graphischen Darstellung der Objekte fällt auf, dass neben dem bereits genutzten <a class="reference external" href="https://doc.modelica.org/Modelica%204.0.0/Resources/helpDymola/Modelica_Thermal_HeatTransfer_Interfaces.html#Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b">thermischen Anschluss</a> - hier als <code class="docutils literal notranslate"><span class="pre">port</span></code> bezeichnet (weißes Quadrat mit rotem Rand) - ein weiterer Anschluss <code class="docutils literal notranslate"><span class="pre">T</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">Q_flow</span></code> (gefülltes blaues Dreieck) abgebildet ist. Der neue blaue Anschluss wird in der Bibliothek als <a class="reference external" href="https://doc.modelica.org/Modelica%204.0.0/Resources/helpDymola/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.RealInput">RealInput</a> bezeichnet. Zwischen den beiden Anschlüssen gibt es zwei wesentliche Unterschiede. Zum einen die gleichgesetzten Variablen, im Fall des thermischen Anschlusses Temperatur und Wärmestrom und im Fall des Real Input ein Zahlenwert der reellen Zahlen. Zum anderen differenziert der neue Anschluss zwischen Input und Output. Da es sich bei der neuen Anschluss lediglich um einen Zahlenwert handelt, versucht die Bibliothek durch die Benennung des Anschlusses zu präzisieren was dieser Zahlenwert repräsentiert. Hier also eine Temperatur bzw. ein Wärmestrom.</p>
+<div class="admonition-hinweis admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Die Simulationsumgebung verhindert, dass Sie unterschiedliche Anschlüsse oder Input mit Input bzw. Output mit Output verbinden.</p>
+</div>
+<p>Die eigentlichen <strong>Signalquellen</strong>, die Sie anschließend benötigen, um eine variable Temperatur oder einen variablen Wärmestrom zu modellieren, finden Sie im Package <a class="reference external" href="https://doc.modelica.org/Modelica%204.0.0/Resources/helpDymola/Modelica_Blocks_Sources.html#Modelica.Blocks.Sources">Sources</a>. Hier sind verschiedene Signalquellen, die farblich in die Built-In Variablentypen <code class="docutils literal notranslate"><span class="pre">Real</span></code> (blau), <code class="docutils literal notranslate"><span class="pre">Integer</span></code> (gelb) und <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> (lila) unterteilt sind, hinterlegt. Anschließend sind einige beispielhafte Signalquellen in Kombination mit der variablen Temperatur dargestellt. Analog funktionieren diese Signalquellen auch für den variablen Wärmestrom.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+RealExpression</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Signalquelle_Expression.png"><img alt="../_images/Signalquelle_Expression.png" src="../_images/Signalquelle_Expression.png" style="width: 300px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Constant</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Signalquelle_Constant.png"><img alt="../_images/Signalquelle_Constant.png" src="../_images/Signalquelle_Constant.png" style="width: 300px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Step</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Signalquelle_Jump.png"><img alt="../_images/Signalquelle_Jump.png" src="../_images/Signalquelle_Jump.png" style="width: 300px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-10" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Sine</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Signalquelle_Sin.png"><img alt="../_images/Signalquelle_Sin.png" src="../_images/Signalquelle_Sin.png" style="width: 300px;" /></a>
+</figure>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+CombiTimeTable</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Signalquelle_Table.png"><img alt="../_images/Signalquelle_Table.png" src="../_images/Signalquelle_Table.png" style="width: 300px;" /></a>
+</figure>
+</div>
+</div>
+<div class="admonition-hinweis admonition">
+<p class="admonition-title">Hinweis</p>
+<p>Sie können den Signalquellen Einheiten zuweisen, indem Sie in den Attributen des Ergebnisparameters eine <code class="docutils literal notranslate"><span class="pre">quantity</span></code> angeben.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="klassenInModelica.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Klassen in Modelica</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="comingSoon.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Coming Soon</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruckblick-abkuhlung-eines-raumes">2.2.1. Rückblick: Abkühlung eines Raumes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgaben-zu-warmetransport-innerhalb-der-msl">2.2.2. Aufgaben zu Wärmetransport innerhalb der MSL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signalquellen-innerhalb-der-msl">2.2.3. Signalquellen innerhalb der MSL</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Paul Satke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

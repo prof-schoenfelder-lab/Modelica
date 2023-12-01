@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1.3. Bedingungen &#8212; System Simulation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/bedingungen';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4. Literatur" href="literatur.html" />
+    <link rel="prev" title="1.2. Grundlegender Modellaufbau" href="grundlegenderModellaufbau.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="uebersicht.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo.png" class="logo__image only-light" alt="System Simulation - Home"/>
+    <script>document.write(`<img src="../_static/Logo.png" class="logo__image only-dark" alt="System Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="uebersicht.html">
+                    Übersicht
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="einfuehrung.html">1. Einführung</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="beispielAbkuehlung.html">1.1. Beispiel: Abkühlung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grundlegenderModellaufbau.html">1.2. Grundlegender Modellaufbau</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Bedingungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="literatur.html">1.4. Literatur</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="objektorientierteP.html">2. Objektorientierte Programmierung</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="klassenInModelica.html">2.1. Klassen in Modelica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelicaStandardLibrary.html">2.2. Modelica Standard Library</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">GreenCity</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="comingSoon.html">3. Coming Soon</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/prof-schoenfelder-lab/Modelica" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/bedingungen.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bedingungen</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-anweisung">1.3.1. If-Anweisung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-anweisung">1.3.2. When-Anweisung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-springender-ball">1.3.3. Beispiel: Springender Ball</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bedingungen">
+<h1><span class="section-number">1.3. </span>Bedingungen<a class="headerlink" href="#bedingungen" title="Permalink to this heading">#</a></h1>
+<p>Die bisherigen Modelica Modelle wurde durch einheitlich definierte Funktionen beschrieben. Gegebenenfalls lassen sich reale Zusammenhänge nicht immer durch solche Funktionen abbilden. Die Randbedingung unseres Modells könnte sich z.B. aufgrund von einem Ereignis verändern. Im Einführungsbeispiel (<a class="reference internal" href="beispielAbkuehlung.html#einfuehrung-beispiel-aufgabe"><span class="std std-ref">Aufgabenstellung</span></a>) bei dem ein Körper durch Konvektion abkühlt, kommt es zu einer plötzlichen Temperaturänderung der Umgebungsluft. Bisher haben wir die Änderung der Randbedingung vermieden, indem die Simulation erst startet, wenn der Körper in der kühleren Umgebung ist. Ereignisse ermöglichen allerdings die Modellierung solcher Änderungen.</p>
+<p>Der formale Zusammenhang der plötzlichen Änderung der Umgebungstemperatur ändert zu stückweise definierten Funktionen:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="math notranslate nohighlight">
+\[T_U = 290\,\text{K}\]</div>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="math notranslate nohighlight">
+\[\begin{split}T_U(t) = 
+\begin{cases}
+    360\,\text{K} &amp; \text{if }t&lt;2\,\text{s} \\
+    290\,\text{K} &amp; \text{if }t\geq2\,\text{s} \\
+\end{cases}\end{split}\]</div>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<figure class="align-default" id="rbkonstant">
+<a class="reference internal image-reference" href="../_images/RandbedingungKonstant.png"><img alt="../_images/RandbedingungKonstant.png" src="../_images/RandbedingungKonstant.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Konstante Randbedingung</span><a class="headerlink" href="#rbkonstant" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<figure class="align-default" id="rbstueck">
+<a class="reference internal image-reference" href="../_images/RandbedingungStueckweise.png"><img alt="../_images/RandbedingungStueckweise.png" src="../_images/RandbedingungStueckweise.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.8 </span><span class="caption-text">Stückweise Randbedingung</span><a class="headerlink" href="#rbstueck" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Die neue Definition der Randbedingung hat Konsequenzen für das Modelica Modell.</p>
+<ol class="arabic simple">
+<li><p>Die Variable <span class="math notranslate nohighlight">\(T_U\)</span> verliert das Signalwort <code class="docutils literal notranslate"><span class="pre">parameter</span></code> und die Zuweisung eines Zahlenwerts, da sie als zweite zeitabhängige Unbekannte betrachtet wird.</p></li>
+<li><p>Entsprechend der Anzahl an Unbekannten muss eine zweite Gleichung für <span class="math notranslate nohighlight">\(T_U\)</span> definiert werden. Hier müssen die Fälle <span class="math notranslate nohighlight">\(t&lt;2\,\text{s}\)</span> und <span class="math notranslate nohighlight">\(t\geq2\,\text{s}\)</span> berücksichtigt werden.</p></li>
+</ol>
+<section id="if-anweisung">
+<h2><span class="section-number">1.3.1. </span>If-Anweisung<a class="headerlink" href="#if-anweisung" title="Permalink to this heading">#</a></h2>
+<p>Die Fallunterscheidung wird mit <strong>If</strong>-Anweisung wie folgt umgesetzt:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Abkuehlung</span>
+  <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_K0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mi">360</span> <span class="s2">&quot;Anfangstemperatur&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">h</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;W/(m2.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mf">0.7</span> <span class="s2">&quot;Wärmeübergangskoeffizient&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">A</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m2&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mf">1.0</span> <span class="s2">&quot;Oberfläche&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">m</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mf">0.3</span> <span class="s2">&quot;Masse&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">c</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;J/(kg.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mf">1.2</span> <span class="s2">&quot;spezifische Wärmekapazität&quot;</span><span class="p">;</span>
+  <span class="nb">Real</span> <span class="n">T_K</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Temperatur&quot;</span><span class="p">;</span>
+  <span class="nb">Real</span> <span class="n">T_U</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Temperatur der Umgebungsluft&quot;</span><span class="p">;</span>
+  <span class="kr">initial</span> <span class="kr">equation</span>
+    <span class="n">T_K</span> <span class="o">=</span> <span class="n">T_K0</span><span class="p">;</span>
+  <span class="kr">equation</span>
+    <span class="n">c</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="kr">der</span><span class="p">(</span><span class="n">T_K</span><span class="p">)</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">T_U</span><span class="o">-</span><span class="n">T_K</span><span class="p">);</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="nb">time</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span><span class="kr">then</span>
+      <span class="n">T_U</span> <span class="o">=</span> <span class="mi">360</span><span class="p">;</span>
+    <span class="kr">else</span>
+      <span class="n">T_U</span> <span class="o">=</span> <span class="mi">290</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="kr">if</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">Abkuehlung</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/AbkuehlungStueckweise.png"><img alt="../_images/AbkuehlungStueckweise.png" src="../_images/AbkuehlungStueckweise.png" style="width: 350px;" /></a>
+</figure>
+</div>
+</div>
+<div class="admonition-erinnerung admonition">
+<p class="admonition-title">Erinnerung</p>
+<p>Modelica interpoliert standardmäßig linear zwischen den einzelnen Zeitschritten.</p>
+</div>
+</section>
+<section id="when-anweisung">
+<h2><span class="section-number">1.3.2. </span>When-Anweisung<a class="headerlink" href="#when-anweisung" title="Permalink to this heading">#</a></h2>
+<p>Neben der <strong>If</strong>-Anweisung gibt es die <strong>When</strong>-Anweisung, deren Inhalt (im Gegensatz zu <code class="docutils literal notranslate"><span class="pre">if</span></code>) nur ausgeführt wird, wenn ihre Bedingung erfüllt wird. Die Umsetzung der gleichen Randbedingung mit <code class="docutils literal notranslate"><span class="pre">when</span></code> sieht wie folgt aus:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Abkuehlung</span>
+  <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_K0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mi">360</span> <span class="s2">&quot;Anfangstemperatur&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">h</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;W/(m2.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mf">0.7</span> <span class="s2">&quot;Wärmeübergangskoeffizient&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">A</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m2&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mf">1.0</span> <span class="s2">&quot;Oberfläche&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">m</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mf">0.3</span> <span class="s2">&quot;Masse&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">c</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;J/(kg.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mf">1.2</span> <span class="s2">&quot;spezifische Wärmekapazität&quot;</span><span class="p">;</span>
+  <span class="nb">Real</span> <span class="n">T_K</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Temperatur&quot;</span><span class="p">;</span>
+  <span class="nb">Real</span> <span class="n">T_U</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Temperatur der Umgebungsluft&quot;</span><span class="p">;</span>
+  <span class="kr">initial</span> <span class="kr">equation</span>
+    <span class="n">T_K</span> <span class="o">=</span> <span class="n">T_K0</span><span class="p">;</span>
+    <span class="n">T_U</span> <span class="o">=</span> <span class="mi">360</span><span class="p">;</span>
+  <span class="kr">equation</span>
+    <span class="n">c</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="kr">der</span><span class="p">(</span><span class="n">T_K</span><span class="p">)</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">T_U</span><span class="o">-</span><span class="n">T_K</span><span class="p">);</span>
+    <span class="kr">when</span> <span class="nb">time</span><span class="o">&gt;=</span><span class="mi">2</span> <span class="kr">then</span>
+      <span class="n">T_U</span> <span class="o">=</span> <span class="mi">290</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="kr">when</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">Abkuehlung</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/AbkuehlungStueckweise.png"><img alt="../_images/AbkuehlungStueckweise.png" src="../_images/AbkuehlungStueckweise.png" style="width: 350px;" /></a>
+</figure>
+</div>
+</div>
+</section>
+<section id="beispiel-springender-ball">
+<h2><span class="section-number">1.3.3. </span>Beispiel: Springender Ball<a class="headerlink" href="#beispiel-springender-ball" title="Permalink to this heading">#</a></h2>
+<p>Bedingungen müssen nicht auf der Variable <code class="docutils literal notranslate"><span class="pre">time</span></code> basieren. Die Einführung von <a class="reference internal" href="grundlegenderModellaufbau.html#einfuehrung-grundlagen-anfangsbedingungen"><span class="std std-ref">Anfangsbedingungen</span></a> wurde am Beispiel des freien Falls veranschaulicht. Basierend auf diesem Modell, stellen wir uns vor, dass ein Ball fällt und wieder nach oben springt, wenn er auf den Boden trifft. Beim Aufprall kommt es zu einem <a class="reference external" href="https://de.wikipedia.org/wiki/Sto%C3%9F_(Physik)">realen Stoß</a>. <span class="math notranslate nohighlight">\(80\,\)</span>% der mechanischen Energie bleiben erhalten und <span class="math notranslate nohighlight">\(20\,\)</span>% werden in innere Energie umgewandelt (Restitutionskoeffizient <span class="math notranslate nohighlight">\(k=0.8\)</span>).</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">reinit()</span></code></p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Der Operator ermöglicht die Initialisierung einer Variable ähnlich der Umgebung <code class="docutils literal notranslate"><span class="pre">initial</span> <span class="pre">equation</span></code>.</p>
+</div>
+<a class="sd-stretched-link reference external" href="https://build.openmodelica.org/Documentation/ModelicaReference.Operators.%27reinit()%27.html"></a></div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover sd-text-center docutils">
+<div class="sd-card-header bg-light docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">pre()</span></code></p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Der Operator stellt das letzte berechnete Ergebis der Variable zur Verfügung.</p>
+</div>
+<a class="sd-stretched-link reference external" href="https://build.openmodelica.org/Documentation/ModelicaReference.Operators.%27pre()%27.html"></a></div>
+</aside>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">SpringenderBall</span>
+  <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+  <span class="nb">Real</span> <span class="n">h</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span> <span class="s2">&quot;Höhe&quot;</span><span class="p">;</span>
+  <span class="nb">Real</span> <span class="n">v</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span><span class="p">)</span> <span class="s2">&quot;Geschwindigkeit&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">h0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>  <span class="o">=</span><span class="mi">1</span>   <span class="s2">&quot;Anfangshöhe&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">v0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span>   <span class="s2">&quot;Anfangsgeschwindigkeit&quot;</span><span class="p">;</span>
+  <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">k</span>             <span class="o">=</span><span class="mf">0.8</span> <span class="s2">&quot;Restitutionskoeffizient&quot;</span><span class="p">;</span>
+  <span class="kr">initial</span> <span class="kr">equation</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>
+  <span class="kr">equation</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="kr">der</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+    <span class="kr">der</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">;</span>
+    <span class="kr">when</span> <span class="n">h</span><span class="o">&lt;</span><span class="mi">0</span> <span class="kr">then</span>
+      <span class="nb">reinit</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="nb">pre</span><span class="p">(</span><span class="n">v</span><span class="p">));</span>
+    <span class="kr">end</span> <span class="kr">when</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">SpringenderBall</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/SpringenderBall.png"><img alt="../_images/SpringenderBall.png" src="../_images/SpringenderBall.png" style="width: 450px;" /></a>
+</figure>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="grundlegenderModellaufbau.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>Grundlegender Modellaufbau</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="literatur.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Literatur</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-anweisung">1.3.1. If-Anweisung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-anweisung">1.3.2. When-Anweisung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-springender-ball">1.3.3. Beispiel: Springender Ball</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Paul Satke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

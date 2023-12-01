@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1.2. Grundlegender Modellaufbau &#8212; System Simulation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/grundlegenderModellaufbau';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.3. Bedingungen" href="bedingungen.html" />
+    <link rel="prev" title="1.1. Beispiel: Abkühlung" href="beispielAbkuehlung.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="uebersicht.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Logo.png" class="logo__image only-light" alt="System Simulation - Home"/>
+    <script>document.write(`<img src="../_static/Logo.png" class="logo__image only-dark" alt="System Simulation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="uebersicht.html">
+                    Übersicht
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="einfuehrung.html">1. Einführung</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="beispielAbkuehlung.html">1.1. Beispiel: Abkühlung</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Grundlegender Modellaufbau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bedingungen.html">1.3. Bedingungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="literatur.html">1.4. Literatur</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="objektorientierteP.html">2. Objektorientierte Programmierung</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="klassenInModelica.html">2.1. Klassen in Modelica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelicaStandardLibrary.html">2.2. Modelica Standard Library</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">GreenCity</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="comingSoon.html">3. Coming Soon</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/prof-schoenfelder-lab/Modelica" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/grundlegenderModellaufbau.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Grundlegender Modellaufbau</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter">1.2.1. Parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-gerade">1.2.2. Aufgabe: Gerade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anfangsbedingungen">1.2.3. Anfangsbedingungen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einheiten">1.2.4. Einheiten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anmerkungen">1.2.5. Anmerkungen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-abkuhlung-eines-raumes">1.2.6. Aufgabe: Abkühlung eines Raumes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="grundlegender-modellaufbau">
+<h1><span class="section-number">1.2. </span>Grundlegender Modellaufbau<a class="headerlink" href="#grundlegender-modellaufbau" title="Permalink to this heading">#</a></h1>
+<p>Ein Modelica Modell lässt sich im einfachsten Fall auf das Deklarieren von Variablen
+und einer Beschreibung von deren Zusammenhängen reduzieren. Wie hier am Beispiel <span class="math notranslate nohighlight">\(f(time)=time\)</span> demonstriert wird.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Gerade</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">f</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">time</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">Gerade</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/02_Gerade.png"><img alt="../_images/02_Gerade.png" src="../_images/02_Gerade.png" style="width: 300px;" /></a>
+</figure>
+</div>
+</div>
+<p>Das erste Signalwort <code class="docutils literal notranslate"><span class="pre">model</span></code> beschreibt den Beginn der Modellbeschreibung, die bis zum Signalwort <code class="docutils literal notranslate"><span class="pre">end</span></code> fortgesetzt wird. Nach den beiden Signalwörtern wird der Name des Modells <code class="docutils literal notranslate"><span class="pre">Gerade</span></code> angegeben. Um zu verdeutlichen, dass die Modellbeschreibung innerhalb dieser Umgebung definiert wird, sind die betreffenden Zeilen eingerückt.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Neben dem Modelica eigenen Variablentyp (sogenannten Built-In Types) <code class="docutils literal notranslate"><span class="pre">Real</span></code> stehen die Typen <code class="docutils literal notranslate"><span class="pre">Integer</span></code>, <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> und <code class="docutils literal notranslate"><span class="pre">String</span></code> zur Verfügung.</p>
+</aside>
+<p>Nachdem die Modellumgebung definiert wurde, wird die erste Variable <code class="docutils literal notranslate"><span class="pre">f</span></code> mit dem <strong>Variablentypen</strong> <code class="docutils literal notranslate"><span class="pre">Real</span></code> definiert. Das Semikolon am Ende der Zeile signalisiert das Ende der ersten Definition.</p>
+<div class="tip admonition">
+<p class="admonition-title">Fehlermeldung, falls <code class="docutils literal notranslate"><span class="pre">f</span></code> nicht definiert wird</p>
+<p>Fehler in Gerade: Unbekannte Variable f referenziert.</p>
+</div>
+<p>Das nächste Signalwort <code class="docutils literal notranslate"><span class="pre">equation</span></code> öffnet eine neue Umgebung innerhalb des Modells. Im Gegensatz zur Modellumgebung wird diese nicht geschlossen. Daraus resultiert, dass alle folgenden Zeilen Gleichungen sind bis eine neue Umgebung geöffnet oder das Modell geschlossen wird. Innerhalb der Umgebung <code class="docutils literal notranslate"><span class="pre">equation</span></code> wird der Zusammenhang zwischen <code class="docutils literal notranslate"><span class="pre">f</span></code> und der Zeit <code class="docutils literal notranslate"><span class="pre">time</span></code> definiert. Auffällig ist, dass <code class="docutils literal notranslate"><span class="pre">time</span></code> nicht deklariert wurde. Die Variable <code class="docutils literal notranslate"><span class="pre">time</span></code> stellt diesbezüglich eine Ausnahme dar. Sie ist in jedem beliebigen Modell enthalten, ohne explizit deklariert werden zu müssen und repräsentiert die Simulationszeit.</p>
+<div class="caution admonition">
+<p class="admonition-title">Achtung</p>
+<p>Die grundsätzlich zur verfügungstehende Variable <code class="docutils literal notranslate"><span class="pre">time</span></code> kann, durch eigene Deklaration, überschieben werden und verliert dardurch den Bezug zur Simulationszeit.</p>
+</div>
+<p>Um das Modell simulieren zu können muss die Voraussetzung, dass die Anzahl der Unbekannten (hier <code class="docutils literal notranslate"><span class="pre">f</span></code>, also eine Unbekannte) mit der Anzahl der Gleichungen übereinstimmt.</p>
+<p>Modelle können zum besseren Verständnis mit beschreibenden <em>Strings</em> ergänzt werden. Diese sind Teil des Modells und unterscheiden sich deshalb von Kommentaren, die an beliebiger Stelle eingefügt werden können und unberücksichtigt bleiben.</p>
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Gerade</span> <span class="s2">&quot;mögliche Modellbeschreibung&quot;</span>
+    <span class="cm">/* Kommentar, der unberücksichtigt bleibt */</span>
+    <span class="nb">Real</span> <span class="n">f</span> <span class="s2">&quot;zeitabhängige Funktion&quot;</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">time</span> <span class="s2">&quot;Zusammenhang zwischen f und der Simulationszeit&quot;</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">Gerade</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="parameter">
+<h2><span class="section-number">1.2.1. </span>Parameter<a class="headerlink" href="#parameter" title="Permalink to this heading">#</a></h2>
+<p>Neben veränderlichen Variablen können auch konstante Variablen eingeführt werden. Das bereits eingeführte Beispielmodell <code class="docutils literal notranslate"><span class="pre">Gerade</span></code> wird im folgenden um eine Steigung <code class="docutils literal notranslate"><span class="pre">m</span></code> zu dem Modell <code class="docutils literal notranslate"><span class="pre">GeradeMitSteigung</span></code> erweitert (<span class="math notranslate nohighlight">\(f(time)=m\cdot time\)</span>).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">GeradeMitSteigung</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">f</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">m</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="nb">time</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">GeradeMitSteigung</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/02_GeradeMitSteigung.png"><img alt="../_images/02_GeradeMitSteigung.png" src="../_images/02_GeradeMitSteigung.png" style="width: 300px;" /></a>
+</figure>
+</div>
+</div>
+<p>Die Besonderheit der Variable <code class="docutils literal notranslate"><span class="pre">m</span></code>, die auf das Signalwort <code class="docutils literal notranslate"><span class="pre">parameter</span></code> folgt, ist, dass sie bereits vor der Simulation bekannt sein muss (<em>a priori</em>) und ihren Wert während der Simulation nicht verändert. Parametern werden entweder Zahlenwerte oder Berechnungsvorschriften aus anderen Parametern zugewiesen.</p>
+<div class="caution admonition">
+<p class="admonition-title">Achtung</p>
+<p>Wird einem Parameter kein Wert zugewiesen, nimmt SimulationX den Wert 0, unter der Warnung: <strong>Der Parameter m hat keinen Wert, 0 wird angenommen</strong>, an.</p>
+</div>
+</section>
+<section id="aufgabe-gerade">
+<h2><span class="section-number">1.2.2. </span>Aufgabe: Gerade<a class="headerlink" href="#aufgabe-gerade" title="Permalink to this heading">#</a></h2>
+<p>Schreiben Sie ein Modell <code class="docutils literal notranslate"><span class="pre">Gerade</span></code>, dass neben der Steigung auch einen Parameter für die Anfangsbedingung <span class="math notranslate nohighlight">\(f(time=0\,\text{s})=b\)</span> enthält. Weisen Sie <span class="math notranslate nohighlight">\(b\)</span> einen Zahlenwert von <span class="math notranslate nohighlight">\(-1\)</span> zu.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Lösung:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Gerade</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">f</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">m</span><span class="o">=</span><span class="mf">0.5</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">b</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="nb">time</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">Gerade</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/02_GeradeAufgabe.png"><img alt="../_images/02_GeradeAufgabe.png" src="../_images/02_GeradeAufgabe.png" style="width: 500px;" /></a>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="anfangsbedingungen">
+<span id="einfuehrung-grundlagen-anfangsbedingungen"></span><h2><span class="section-number">1.2.3. </span>Anfangsbedingungen<a class="headerlink" href="#anfangsbedingungen" title="Permalink to this heading">#</a></h2>
+<p>Sobald die Modellbeschreibungen Ableitungen nach der Zeit <code class="docutils literal notranslate"><span class="pre">der()</span></code> enthalten, können die Anfangsbedingungen nicht mehr, wie in der vorangegangenen Aufgabe, in die Gleichung aufgenommen werden, ohne die Integration selbst durchzuführen. Zur Veranschaulichung wird das Beispiel der gleichmäßig beschleunigten Bewegung mit der Erdbeschleunigung modelliert.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Physikalischer Zusammenhang</label><div class="sd-tab-content docutils">
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<div class="math notranslate nohighlight">
+\[\begin{split}h(t) &amp;= \int v(t)\,dt = -\frac{1}{2}gt^2+v_0 t+h_0 \\
+v(t) &amp;= \int a(t)\,dt = -gt+v_0\\
+a(t) &amp;= -g    \end{split}\]</div>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
+<td><p>Beschleunigung</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(g\)</span></p></td>
+<td><p>Erdbeschleunigung</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h\)</span></p></td>
+<td><p>Höhe</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_0\)</span></p></td>
+<td><p>Anfangshöhe</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td><p>Zeit</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(v\)</span></p></td>
+<td><p>Geschwindigkeit</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(v_0\)</span></p></td>
+<td><p>Anfangsgeschwindigkeit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">FreierFall</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">h</span> <span class="s2">&quot;Höhe&quot;</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">v</span> <span class="s2">&quot;Geschwindigkeit&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">h0</span><span class="o">=</span><span class="mi">5</span>   <span class="s2">&quot;Anfangshöhe&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">v0</span><span class="o">=</span><span class="mi">0</span>   <span class="s2">&quot;Anfangsgeschwindigkeit&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span> <span class="s2">&quot;Erdbeschleunigung&quot;</span><span class="p">;</span>
+    <span class="kr">initial</span> <span class="kr">equation</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="kr">der</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+        <span class="kr">der</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">FreierFall</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Modelica Ergebnis</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Bewegung.png"><img alt="../_images/Bewegung.png" src="../_images/Bewegung.png" style="width: 350px;" /></a>
+</figure>
+</div>
+</div>
+<p>Der physikalische Zusammenhang führt, durch die Integration, zu zwei Konstanten <span class="math notranslate nohighlight">\(h_0\)</span> und <span class="math notranslate nohighlight">\(v_0\)</span>. Da das Integral eigentlich nicht vom Anwender, sondern von dem Programm gelöst werden soll, gibt es die Möglichkeit Anfangsbedingungen in der Umgebung <code class="docutils literal notranslate"><span class="pre">initial</span> <span class="pre">equation</span></code> zu definieren. Diese Bedingungen gelten für den ersten Zeitpunkt, der nicht unbedingt <span class="math notranslate nohighlight">\(t=0\,\text{s}\)</span> entsprechen muss.</p>
+</section>
+<section id="einheiten">
+<h2><span class="section-number">1.2.4. </span>Einheiten<a class="headerlink" href="#einheiten" title="Permalink to this heading">#</a></h2>
+<p>Neben der Betrachtung von rein mathematisch Problemen sind Variablen in der Realität mit Einheiten behaftet. Das zuvor eingeführte Modell der gleichmäßig beschleunigten Bewegung wird um die entsprechenden Einheiten erweitert.</p>
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">FreierFall</span>
+    <span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">h</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>   <span class="s2">&quot;Höhe&quot;</span><span class="p">;</span>
+    <span class="nb">Real</span> <span class="n">v</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span><span class="p">)</span> <span class="s2">&quot;Geschwindigkeit&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">h0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>  <span class="o">=</span><span class="mi">5</span>    <span class="s2">&quot;Anfangshöhe&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">v0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s&quot;</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span>    <span class="s2">&quot;Anfangsgeschwindigkeit&quot;</span><span class="p">;</span>
+    <span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">g</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m/s2&quot;</span><span class="p">)</span><span class="o">=</span><span class="mf">9.81</span> <span class="s2">&quot;Erdbeschleunigung&quot;</span><span class="p">;</span>
+    <span class="kr">initial</span> <span class="kr">equation</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h0</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span><span class="p">;</span>
+    <span class="kr">equation</span>
+        <span class="kr">der</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+        <span class="kr">der</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nc">FreierFall</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Die angegebenen Einheiten können von Simulationsumgebungen wie OpenModelica überprüft werden. In SimulationX steht diese Option noch nicht zur Verfügung.</p>
+</section>
+<section id="anmerkungen">
+<h2><span class="section-number">1.2.5. </span>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Permalink to this heading">#</a></h2>
+<p>Anmerkungen oder <code class="docutils literal notranslate"><span class="pre">annotations</span></code> sind zusätzliche Informationen, die nicht das eigentliche Modell beschreiben, sondern z.B. Angaben zu Simulationseinstellungen enthalten. SimulationX ergänzt das Modell <code class="docutils literal notranslate"><span class="pre">Gerade</span></code> automatisch, mit einer Anmerkung am Modellende, damit das Modell simuliert werden kann.</p>
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Gerade</span>
+	<span class="kr">extends</span> <span class="n">SimModel</span><span class="p">;</span>
+	<span class="nb">Real</span> <span class="n">f</span><span class="p">;</span>
+	<span class="kr">equation</span>
+		<span class="n">f</span> <span class="o">=</span> <span class="nb">time</span><span class="p">;</span>
+	<span class="kr">annotation</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="mi">2</span><span class="p">));</span>
+<span class="kr">end</span> <span class="nc">Gerade</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Hier werden die Variablen spezifiziert, deren Ergebnisse gespeichert werden sollen und Angaben zu dem Solver gemacht. Wenn die Anmerkung am Ende des Modells steht, bezieht sie sich auf das gesamte Modell. Alternativ können z.B. auch Anmerkungen zu Variablen gemacht werden.</p>
+<p>Die zweite Ergänzung des Modells mit dem Signalwort <code class="docutils literal notranslate"><span class="pre">extends</span></code> wird zu einem späteren Zeitpunkt erläutert.</p>
+</section>
+<section id="aufgabe-abkuhlung-eines-raumes">
+<span id="einfuehrung-grundlagen-abkuehlung"></span><h2><span class="section-number">1.2.6. </span>Aufgabe: Abkühlung eines Raumes<a class="headerlink" href="#aufgabe-abkuhlung-eines-raumes" title="Permalink to this heading">#</a></h2>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(c_p\)</span></p></td>
+<td><p>spezifische Wärmekapazität (isobar)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(k\)</span></p></td>
+<td><p>Wärmeleitfähigkeit</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<td><p>Dichte</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(T_R\)</span></p></td>
+<td><p>Temperatur des Raums (homogen)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(T_A\)</span></p></td>
+<td><p>Temperatur der Außenluft (constant)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td><p>Zeit</p></td>
+</tr>
+</tbody>
+</table>
+</aside>
+<p>Modellieren Sie einen Innenraum, der nur eine thermisch aktive Fläche besitzt, die ihn von der Außenluft trennt (siehe  <a class="reference internal" href="#aufgabeabkuehlungraum"><span class="std std-numref">Fig. 1.6</span></a>). Alle anderen Flächen werden adiabat angenommen. Recherchieren Sie die formalen Zusammenhänge für die Wärmeleitung (Konduktion), sowie die Grundgleichung der Wärmelehre und implementieren Sie diese im Modell. Das Ergebnis soll aus dem zeitabhängigen Verlauf der homogenen Innenraumtemperatur bestehen.</p>
+<!-- ```modelica
+model Konduktion
+	extends SimModel(tStop=72000);
+	Modelica.Thermal.HeatTransfer.Components.HeatCapacitor mass1(
+		C=78000,
+		T(
+			start=394.15,
+			fixed=true)) annotation(Placement(transformation(extent={{-100,20},{-40,80}})));
+	Modelica.Thermal.HeatTransfer.Components.ThermalConductor conduction(G=9.1) annotation(Placement(transformation(extent={{-30,-20},{30,40}})));
+	Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=273.15) annotation(Placement(transformation(extent={{115,-15},{65,35}})));
+	equation
+		connect(mass1.port,conduction.port_a) annotation(Line(
+			points={{-70,20},{-70,15},{-70,10},{-35,10},{-30,10}},
+			color={191,0,0}));
+		connect(fixedTemperature1.port,conduction.port_b) annotation(Line(
+			points={{65,10},{60,10},{35,10},{30,10}},
+			color={191,0,0},
+			thickness=0.0625));
+	annotation(
+		uses(Modelica(version="4.0.0")),
+		__esi_protocols(
+			transient={
+				Protocol(var=time),
+				Protocol(var=mass1.T),
+				Protocol(var=conduction.Q_flow)}),
+		__esi_solverOptions(
+			solver="CVODE",
+			typename="ExternalCVODEOptionData"));
+end Konduktion;
+``` -->
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Aufgabe</label><div class="sd-tab-content docutils">
+<figure class="align-default" id="aufgabeabkuehlungraum">
+<a class="reference internal image-reference" href="../_images/AbkuehlungRaum.png"><img alt="../_images/AbkuehlungRaum.png" src="../_images/AbkuehlungRaum.png" style="width: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Beschreibung der Geometrie- sowie der Materialparameter und gegebener Temperaturen.</span><a class="headerlink" href="#aufgabeabkuehlungraum" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Lösung: Modelica Modell</label><div class="sd-tab-content docutils">
+<div class="highlight-modelica notranslate"><div class="highlight"><pre><span></span><span class="kr">model</span> <span class="nc">Raum</span> <span class="s2">&quot;Abkuehlung eines unbeheizten Raums&quot;</span>
+	<span class="kr">extends</span> <span class="n">SimModel</span><span class="p">(</span><span class="n">tStop</span><span class="o">=</span><span class="mi">86400</span><span class="p">);</span>
+	
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">A</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m2&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mi">13</span>     <span class="s2">&quot;Wandfläche&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">c_p</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;J/(kg.K)&quot;</span><span class="p">)</span><span class="o">=</span><span class="mi">1000</span>   <span class="s2">&quot;spezifische Waermekapazität (isobar)&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">k</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;W/(m.K)&quot;</span><span class="p">)</span> <span class="o">=</span><span class="mf">0.28</span>   <span class="s2">&quot;Waermeleitfaehigkeit&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">rho</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/m3&quot;</span><span class="p">)</span>   <span class="o">=</span><span class="mf">1.2</span>    <span class="s2">&quot;Dichte&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">L</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">0.4</span>    <span class="s2">&quot;Wanddicke&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_R0</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">294.15</span> <span class="s2">&quot;Anfangstemperatur des Innenraums&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">T_A</span> <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>       <span class="o">=</span><span class="mf">273.15</span> <span class="s2">&quot;Aussentemperatur&quot;</span><span class="p">;</span>
+	<span class="kr">parameter</span> <span class="nb">Real</span> <span class="n">V</span>   <span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;m3&quot;</span><span class="p">)</span>      <span class="o">=</span><span class="mi">65</span>     <span class="s2">&quot;Volumen&quot;</span><span class="p">;</span>
+	
+	<span class="nb">Real</span> <span class="n">T_R</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="s2">&quot;Innenraumtemperatur&quot;</span><span class="p">;</span>
+	
+	<span class="kr">initial</span> <span class="kr">equation</span>
+		<span class="n">T_R</span><span class="o">=</span><span class="n">T_R0</span><span class="p">;</span>
+		
+	<span class="kr">equation</span>
+		<span class="n">c_p</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="kr">der</span><span class="p">(</span><span class="n">T_R</span><span class="p">)</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="n">A</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">T_A</span><span class="o">-</span><span class="n">T_R</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nc">Raum</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Lösung: interaktive Grafik</label><div class="sd-tab-content docutils">
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" type="text/css" href="https://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js" type="text/javascript" charset="UTF-8"></script>
+  </head>
+  <body>
+  <div id="jxgbox" class="jxgbox" style="width:743px; height:400px;"></div>
+  <script>
+    var board = JXG.JSXGraph.initBoard('jxgbox', {
+      boundingbox: [-1, 25, 25, -2],
+      axis:true,
+      showCopyright:false,
+      showNavigation:false,
+      defaultAxes:{
+        x: {
+          name: 't [h]',
+          withLabel: true,
+          label: {
+            position: 'rt',
+            offset: [-15, 20]
+          }
+        },
+        y: {
+          withLabel: true,
+          name: 'T_R [°C]',
+          label: {
+            position: 'rt',
+            offset: [10, -10]
+          }
+        }
+      }
+    });
+    var V = board.create('slider', [[15, 24], [20, 24], [20, 65, 100]], {name:'V', snapWidth: 5, postLabel: ' m^3'});
+    var A = board.create('slider', [[15, 22.5], [20, 22.5], [1, 13, 25]], {name:'A', snapWidth: 1, postLabel: ' m^2'});
+    var L = board.create('slider', [[15, 21], [20, 21], [0.05, 0.4, 1]], {name:'L', snapWidth: 0.05, postLabel: ' m'});
+
+    var cp = board.create('slider', [[15, 19], [20, 19], [100, 1000, 1900]], {name:'c_p', snapWidth: 100, postLabel: ' J.kg^{-1}.K^{-1}'});
+    var k = board.create('slider', [[15, 17.5], [20, 17.5], [0.05, 0.28, 0.5]], {name:'k', snapWidth: 0.01, postLabel: ' W.m^{-1}.K^{-1}'});
+    var rho = board.create('slider', [[15, 16], [20, 16], [0.05, 1.2, 3]], {name:'rho', snapWidth: 0.05, postLabel: ' kg.m^3'});
+
+    var TA = board.create('slider', [[15, 14], [20, 14], [-5, 0, 15]], {name:'T_A', snapWidth: 0.5, postLabel: ' °C'});
+    var TR0 = board.create('slider', [[15, 12.5], [20, 12.5], [15, 21, 25]], {name:'T_{R0}', snapWidth: 0.5, postLabel: ' °C'});
+    var graph = board.create('functiongraph', [function(x){return -(TA.Value()-TR0.Value())*Math.exp(-k.Value()*A.Value()/(cp.Value()*V.Value()*rho.Value()*L.Value())*(x*3600))+TA.Value();}, -0, 24],   {name:'T_R(t)', withLabel:false, strokeColor:'red'});
+
+    var reset = board.create('button',[17, 10,'Reset', function(){
+      V.setValue(65),
+      A.setValue(13),
+      L.setValue(0.4),
+      cp.setValue(1000),
+      k.setValue(0.28),
+      rho.setValue(1.2),
+      TA.setValue(0)
+      TR0.setValue(21)
+    }]);
+
+    var glider = board.create('glider', [5, 10, graph], {name:'T_R'});
+    var x = board.create('point', [() => glider.X(), 0], {size:1, name:'', visible:false});
+    var y = board.create('point', [0, () => glider.Y()], {size:1, name:'', visible:false});
+    xseg = board.create('segment', [glider, x], {dash:2, strokeColor:'#000000'});
+    yseg = board.create('segment', [glider, y], {dash:2, strokeColor:'#000000'});
+  </script>
+  </body>
+</html>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./src"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="beispielAbkuehlung.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.1. </span>Beispiel: Abkühlung</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bedingungen.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Bedingungen</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter">1.2.1. Parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-gerade">1.2.2. Aufgabe: Gerade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anfangsbedingungen">1.2.3. Anfangsbedingungen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#einheiten">1.2.4. Einheiten</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anmerkungen">1.2.5. Anmerkungen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aufgabe-abkuhlung-eines-raumes">1.2.6. Aufgabe: Abkühlung eines Raumes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Paul Satke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
