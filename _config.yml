@@ -3,7 +3,7 @@
 
 title: System Simulation
 author: Paul Satke
-logo: data/img/logo.png
+logo: data/img/Logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
