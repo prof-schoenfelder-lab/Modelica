@@ -16,8 +16,8 @@ latex:
     targetname: book.tex
 
 # Information about where the book exists on the web
-repository:
-  url: https://prof-schoenfelder-lab.github.io/Modelica/ # Online location of your book
+# repository:
+#   url: https://prof-schoenfelder-lab.github.io/Modelica # Online location of your book
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
